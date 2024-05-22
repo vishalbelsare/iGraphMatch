@@ -1,5 +1,25 @@
 # iGraphMatch (development version)
 
+# iGraphMatch 2.0.5
+
+* More changes for igraph 2.0.x to avoid warnings due to use of deprecated functions.
+* Changes to address https://github.com/dpmcsuss/iGraphMatch/issues/67. `init_start` and other functions with `start = 'rds_perm_bari'` and `start  = 'rds_from_sim_start'` will now work correctly.
+* Updates to documentation on value returned by `gm` to better explain the list elements that are components of `graphMatch` class.
+
+# iGraphMatch 2.0.4
+
+* Updates for igraph 2.0.x.
+  * Use `igraph::upgrade_graph` on the Enron and C.Elegans data.
+  * Explicitly cast `nnodes` to integer in `identity_match` function.
+
+# iGraphMatch 2.0.3
+
+* Updates for changes in Matrix version 1.6-2
+
+# iGraphMatch 2.0.2
+
+* Updates for changes in Matrix version 1.5-5+
+
 # iGraphMatch 2.0.1
 
 * Updates for changes to Matrix package

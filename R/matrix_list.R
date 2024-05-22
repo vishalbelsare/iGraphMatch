@@ -64,7 +64,7 @@ setMethod("[",
 setMethod("[",
   signature(x="matrix_list",i = 'ANY', j = 'missing', drop = 'ANY'),
   function(x, i, drop = FALSE) {
-    matrix_list(lapply(x, function(xl) xl[i, , drop]))
+    matrix_list(lapply(x, function(xl) xl[i, , drop = drop]))
   })
 
 
@@ -72,7 +72,7 @@ setMethod("[",
 setMethod("[",
   signature(x="matrix_list", i = 'missing', j = 'ANY', drop = 'ANY'),
   function(x, j, drop = FALSE) {
-    matrix_list(lapply(x, function(xl) xl[, j, drop]))
+    matrix_list(lapply(x, function(xl) xl[, j, drop = drop]))
   })
 
 
@@ -80,7 +80,7 @@ setMethod("[",
 setMethod("[",
   signature(x="matrix_list",i = 'missing', j = 'missing', drop = 'ANY'),
   function(x, drop = FALSE) {
-    matrix_list(lapply(x, function(xl) xl[, , drop]))
+    matrix_list(lapply(x, function(xl) xl[, , drop = drop]))
   })
 
 
@@ -97,6 +97,18 @@ setMethod("%*%", signature(x = "ANY", y = "matrix_list"),
     matrix_list(lapply(seq_along(y), function(i) x %*% y[[i]]))
   })
 
+#' @rdname matrix_list
+setMethod("%*%", signature(x = "matrix_list", y = "Matrix"), 
+  function(x, y){
+    matrix_list(lapply(seq_along(x), function(i) x[[i]] %*% y))
+  })
+
+
+#' @rdname matrix_list
+setMethod("%*%", signature(x = "Matrix", y = "matrix_list"), 
+  function(x, y){
+    matrix_list(lapply(seq_along(y), function(i) x %*% y[[i]]))
+  })
 
 
 #' @rdname matrix_list

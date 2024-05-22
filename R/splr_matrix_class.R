@@ -136,15 +136,23 @@ setAs('splrMatrix','dMatrix', function(from) {
   as(from@x + from@a %*% t(from@b),'Matrix')
 })
 
-as.character.splrMatrix <- function(from) {
-  paste0("Sparse\n", as.character(from@x), "\n",
-    "Left factor\n", as.character(from@a), "\n",
-    "Right factor\n", as.character(from@b))
+#' splr "Matrix" as character
+#'
+#' @param x splrMatrix
+#'
+#' @return character output of splr matrix
+#'
+#' @export
+#' @keywords internal
+as.character.splrMatrix <- function(x, ...) {
+  paste0("Sparse\n", as.character(x@x, ...), "\n",
+    "Left factor\n", as.character(x@a, ...), "\n",
+    "Right factor\n", as.character(x@b, ...))
 }
 
 # setMethod("as.character", "splrMatrix", as.character.splrMatrix)
 
-setAs("splrMatrix", "character", as.character.splrMatrix)
+setAs("splrMatrix", "character", function(from) as.character.splrMatrix(from))
 
 setAs("splrMatrix", "matrix", function(from) as.matrix.splrMatrix(from))
 
